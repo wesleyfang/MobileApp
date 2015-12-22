@@ -1,11 +1,13 @@
 (function () {
-    var everlive = new Everlive("zvy8lb5qxka1t2oc");
+    //var everlive = new Everlive("zvy8lb5qxka1t2oc");
+            var everlive = new Everlive({
+            apiKey: "3q4sHgIqESXbpvOp",
+            scheme: "http"
+        });
     document.addEventListener("deviceready", function () {
         window.listview = kendo.observable({
             addImage: function () {
                 var success = function (data) {
-                    //$("#images").data("kendoMobileListView")
-                    //    .prepend(["data:iamge/jpeg;base64," + data]);
                     everlive.Files.create({
                         Filename: Math.random().toString(36).substring(2, 15) + ".jpg",
                         ContentType: "image/jpeg",
@@ -40,7 +42,7 @@
                     template: "<img src='#: data #'>"
                 });
             });
-        }
+        };
         loadPhotos();
 
         navigator.splashscreen.hide();
